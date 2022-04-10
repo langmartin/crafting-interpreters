@@ -39,6 +39,7 @@ int main(int argc, char **argv) {
   FILE *fd;
   char c;
   char buffer[1024] = "";
+  token *tok;
   token_list *tokens;
   int index = 0;
 
@@ -48,6 +49,20 @@ int main(int argc, char **argv) {
   }
 
   while ((c = getc(fd)) != EOF) {
+    tok = malloc(sizeof(token));
+
+    switch (c) {
+    case '(': tok->t = LEFT_PAREN; break;
+    case ')': tok->t = RIGHT_PAREN; break;
+    case '{': tok->t = LEFT_BRACE; break;
+    case '}': tok->t = RIGHT_BRACE; break;
+    case ',': tok->t = COMMA; break;
+    case '.': tok->t = DOT; break;
+    case '-': tok->t = MINUS; break;
+    case '+': tok->t = PLUS; break;
+    case ';': tok->t = SEMICOLON; break;
+    case '*': tok->t = STAR; break;
+    }
     
   }
 

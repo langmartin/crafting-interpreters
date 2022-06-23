@@ -1,4 +1,11 @@
-all: $(basename $(wildcard *.c))
+CC=gcc
+CFLAGS=-O0 -std=c99 -pedantic -Wall -Werror
 
-%: %.c
-	gcc -o $@ $^
+SRCS=$(wildcard *.c)
+OBJS=$(SRCS:.c=.o)
+
+test: $(OBJS)
+	$(CC) -o $@ $(CFLAGS) $(OBJS)
+
+clean:
+	rm -rf test $(OBJS)

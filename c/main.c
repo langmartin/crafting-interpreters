@@ -40,6 +40,11 @@ static char *readFile(const char *path) {
   size_t bytesRead = fread(buffer, sizeof(char), fileSize, file);
   buffer[bytesRead] = '\0';
 
+  if (bytesRead < fileSize) {
+    fprintf(stderr, "Could not read file \"%s\".\n", path);
+    exit(74);
+  }
+
   fclose(file);
   return buffer;
 }
